@@ -76,10 +76,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
         print(url!)
         if let allowedHost = url?.host {
             for website in websites {
-                print("\(website) <====\(websites.count)")
                 if allowedHost.contains(website){
                     decisionHandler(.allow)
-                    print("pode")
                     return
                 }
             }
@@ -87,11 +85,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         if let notAllowedHost = url?.host {
             for website in websites {
-                print("\(website) <====\(websites.count)")
                 if !notAllowedHost.contains(website){
                     showAlert()
                     decisionHandler(.cancel)
-                    print("n pode")
                     return
                 }
             }
