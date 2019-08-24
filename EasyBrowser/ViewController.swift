@@ -18,14 +18,16 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
         
+        //let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+        let backNavigation = UIBarButtonItem(title: "Back", style: .plain, target: self, action:  #selector(goBack))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
-        
+        let forwardNavigation = UIBarButtonItem(title: "Forward", style: .plain, target: self, action:  #selector(goForward))
+
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
         let progressButton = UIBarButtonItem(customView: progressView)
         
-        toolbarItems = [progressButton ,spacer, refresh]
+        toolbarItems = [backNavigation ,spacer, progressButton, spacer, forwardNavigation]
         navigationController?.isToolbarHidden = false
         
         webView = WKWebView()
@@ -53,6 +55,20 @@ class ViewController: UIViewController, WKNavigationDelegate {
         // for ipad
         ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(ac, animated: true)
+    }
+    
+    @objc func goForward(){
+        if webView.canGoForward{
+            webView.goForward()
+        } else {
+            
+        }
+    }
+    
+    @objc func goBack(){
+        if webView.canGoBack {
+            webView.goBack()
+        }
     }
     
     func openPage(action: UIAlertAction){
@@ -92,8 +108,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 }
             }
         }
-
-        
         decisionHandler(.cancel)
         
     }
