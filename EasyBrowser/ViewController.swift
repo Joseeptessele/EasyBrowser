@@ -13,7 +13,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var websites = ["apple.com", "google.com"]
+    var websites = ["apple.com", "google.com", "facebook.com"]
     override func loadView() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
@@ -36,7 +36,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: "https://\(websites[0])")!
+        guard let url = URL(string: "https://\(websites[0])") else { return }
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
         
@@ -73,10 +73,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.url
-        
-        if let host = url?.host {
+        print(url!)
+        if let allowedHost = url?.host {
             for website in websites {
-                if host.contains(website){
+                print("\(website) <====\(websites.count)")
+                if allowedHost.contains(website){
                     decisionHandler(.allow)
                     print("pode")
                     return
@@ -84,9 +85,27 @@ class ViewController: UIViewController, WKNavigationDelegate {
             }
         }
         
+        if let notAllowedHost = url?.host {
+            for website in websites {
+                print("\(website) <====\(websites.count)")
+                if !notAllowedHost.contains(website){
+                    showAlert()
+                    decisionHandler(.cancel)
+                    print("n pode")
+                    return
+                }
+            }
+        }
+
+        
         decisionHandler(.cancel)
-        print("nao ppode")
+        
     }
 
+    func showAlert(){
+        let ac = UIAlertController(title: "Warning", message: "This website is not allowed", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(ac, animated: true)
+    }
 }
 
