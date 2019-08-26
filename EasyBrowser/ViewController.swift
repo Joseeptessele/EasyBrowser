@@ -89,8 +89,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        for website in websites{
+            print("\(website) <---")
+        }
+
         let url = navigationAction.request.url
-        print(url!)
         if let allowedHost = url?.host {
             for website in websites {
                 if allowedHost.contains(website){
@@ -100,9 +103,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
             }
         }
         
+        
         if let notAllowedHost = url?.host {
             for website in websites {
                 if !notAllowedHost.contains(website){
+                    print("\(website) = \(notAllowedHost)")
                     showAlert()
                     decisionHandler(.cancel)
                     return

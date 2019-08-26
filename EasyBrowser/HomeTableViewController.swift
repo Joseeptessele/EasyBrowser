@@ -10,9 +10,10 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
 
-    let links = ["facebook.com", "google.com"]
+    var links = ["google.com"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addLink))
     }
 
 
@@ -35,6 +36,13 @@ class HomeTableViewController: UITableViewController {
             vc.websites = links
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func addLink(){
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "AddLink") as? LinkViewController{
+            navigationController?.pushViewController(vc, animated: true)
+        }
+
     }
 
 }

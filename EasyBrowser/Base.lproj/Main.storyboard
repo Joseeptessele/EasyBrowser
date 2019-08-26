@@ -47,7 +47,7 @@
         <!--Home Table View Controller-->
         <scene sceneID="Lcc-1j-FqO">
             <objects>
-                <tableViewController id="bVS-d7-Tjx" customClass="HomeTableViewController" customModule="EasyBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Home" id="bVS-d7-Tjx" customClass="HomeTableViewController" customModule="EasyBrowser" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5rk-em-CgE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,10 +73,51 @@
             </objects>
             <point key="canvasLocation" x="-259.4202898550725" y="97.767857142857139"/>
         </scene>
+        <!--Link View Controller-->
+        <scene sceneID="d6I-Sm-lG2">
+            <objects>
+                <viewController storyboardIdentifier="AddLink" id="dx2-gg-b2e" customClass="LinkViewController" customModule="EasyBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pMg-Qg-meJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Link:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ci-iA-Fqx">
+                                <rect key="frame" x="64" y="281" width="37" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fij-Sk-85y">
+                                <rect key="frame" x="109" y="276" width="241" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKs-7l-fEN">
+                                <rect key="frame" x="214" y="337" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addNewLink:" destination="dx2-gg-b2e" eventType="touchUpInside" id="p5D-TG-TNq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5Be-Xm-Ykw"/>
+                    </view>
+                    <connections>
+                        <outlet property="newLink" destination="fij-Sk-85y" id="hcx-kr-TVW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tz4-sj-ShL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-484.05797101449281" y="826.33928571428567"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="kyi-9A-zbC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="STA-KD-NCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QDJ-ZS-sjw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cv4-h4-svy">
@@ -88,6 +129,7 @@
                         <segue destination="bVS-d7-Tjx" kind="relationship" relationship="rootViewController" id="FVH-B1-cOH"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="STA-KD-NCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1171.0144927536232" y="97.767857142857139"/>
         </scene>
