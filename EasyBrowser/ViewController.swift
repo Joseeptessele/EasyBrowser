@@ -10,10 +10,11 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController, WKNavigationDelegate {
-
+    
+    var website: String = ""
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var websites = ["apple.com", "google.com", "facebook.com"]
+    var websites = [String]()
     override func loadView() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
@@ -38,7 +39,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let url = URL(string: "https://\(websites[0])") else { return }
+        guard let url = URL(string: "https://\(website)") else { return }
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
         
